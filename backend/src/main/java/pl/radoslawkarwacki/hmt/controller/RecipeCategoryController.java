@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.radoslawkarwacki.hmt.dto.RecipeCategoryDto;
 import pl.radoslawkarwacki.hmt.mapper.RecipeCategoryMapper;
-import pl.radoslawkarwacki.hmt.model.Recipe;
 import pl.radoslawkarwacki.hmt.model.RecipeCategory;
 import pl.radoslawkarwacki.hmt.repository.RecipeCategoryRepository;
 
@@ -30,13 +29,15 @@ public class RecipeCategoryController {
 
     @PostMapping
     public ResponseEntity<RecipeCategoryDto> save(@RequestBody RecipeCategoryDto recipeCategoryDto) {
-        RecipeCategory recipeCategory = mapper.toRecipeCategory(recipeCategoryDto);
-        RecipeCategory savedEntity = recipeCategoryRepository.save(recipeCategory);
-        return new ResponseEntity<>(mapper.toRecipeCategoryDto(savedEntity), HttpStatus.OK);
+        return saveRecipeCategory(recipeCategoryDto);
     }
 
     @PutMapping
     public ResponseEntity<RecipeCategoryDto> update(@RequestBody RecipeCategoryDto recipeCategoryDto) {
+        return saveRecipeCategory(recipeCategoryDto);
+    }
+
+    private ResponseEntity<RecipeCategoryDto> saveRecipeCategory(@RequestBody RecipeCategoryDto recipeCategoryDto) {
         RecipeCategory recipeCategory = mapper.toRecipeCategory(recipeCategoryDto);
         RecipeCategory savedEntity = recipeCategoryRepository.save(recipeCategory);
         return new ResponseEntity<>(mapper.toRecipeCategoryDto(savedEntity), HttpStatus.OK);

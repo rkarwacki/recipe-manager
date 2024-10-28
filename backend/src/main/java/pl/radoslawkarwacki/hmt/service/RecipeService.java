@@ -1,21 +1,23 @@
 package pl.radoslawkarwacki.hmt.service;
 
 import org.springframework.stereotype.Service;
-import pl.radoslawkarwacki.hmt.dto.RecipeDetailsDto;
-import pl.radoslawkarwacki.hmt.dto.RecipeDto;
+import pl.radoslawkarwacki.hmt.model.Recipe;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public interface RecipeService {
 
-    Iterable<RecipeDto> findAll();
+    List<Recipe> findAll();
 
-    Iterable<RecipeDto> findAllByRecipeCategoryId(Long recipeCategoryId);
+    List<Recipe> findAllByRecipeCategoryId(Long recipeCategoryId);
 
-    RecipeDto save(RecipeDto recipeDto);
+    Recipe save(Recipe recipeDto);
+
+    Recipe update(Recipe recipe);
 
     void deleteById(Long id);
 
-    Optional<RecipeDetailsDto> findById(Long id);
+    Optional<Recipe> findById(Long id);
 }

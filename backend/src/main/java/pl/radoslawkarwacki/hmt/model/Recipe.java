@@ -1,28 +1,45 @@
 package pl.radoslawkarwacki.hmt.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Data
-public class Recipe {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+@Getter
+@Setter
+@NoArgsConstructor
+@Table(name = "recipe")
+public class Recipe extends BaseEntity {
 
     @Column(name = "recipe_name")
+    @NotBlank
     private String recipeName;
 
+    @Min(1)
     private int kcal;
 
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @Min(1)
+    private int portions;
+
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Ingredient> ingredients;
+
+    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<RecipeStep> steps;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_category_id")
+    @NotNull
     private RecipeCategory recipeCategory;
-
-//    private String imagePath;
-
 }
