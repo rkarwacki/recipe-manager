@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.radoslawkarwacki.hmt.model.Ingredient;
 import pl.radoslawkarwacki.hmt.model.Recipe;
-import pl.radoslawkarwacki.hmt.model.RecipeStep;
 import pl.radoslawkarwacki.hmt.repository.RecipeRepository;
 import pl.radoslawkarwacki.hmt.service.IngredientService;
 import pl.radoslawkarwacki.hmt.service.RecipeService;
-import pl.radoslawkarwacki.hmt.service.RecipeStepService;
 
 import java.util.Comparator;
 import java.util.List;
@@ -21,13 +19,11 @@ public class RecipeServiceImpl implements RecipeService {
 
     private RecipeRepository recipeRepository;
     private IngredientService ingredientService;
-    private RecipeStepService recipeStepService;
 
     @Autowired
-    public RecipeServiceImpl(RecipeRepository recipeRepository, IngredientService ingredientService, RecipeStepService recipeStepService)  {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, IngredientService ingredientService)  {
         this.recipeRepository = recipeRepository;
         this.ingredientService = ingredientService;
-        this.recipeStepService = recipeStepService;
     }
 
     @Override
@@ -45,7 +41,6 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Recipe save(Recipe recipe) {
         recipe.getIngredients().forEach(ingredient -> ingredient.setRecipe(recipe));
-        recipe.getSteps().forEach(step -> step.setRecipe(recipe));
         return recipeRepository.save(recipe);
     }
 
@@ -53,10 +48,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe update(Recipe recipe) {
         List<Ingredient> currentIngredients = recipe.getIngredients();
         currentIngredients.forEach(ingredient -> ingredient.setRecipe(recipe));
-        List<RecipeStep> currentSteps = recipe.getSteps();
-        currentSteps.forEach(step -> step.setRecipe(recipe));
         ingredientService.synchronizeRecipeIngredients(currentIngredients, recipe.getId());
-        recipeStepService.synchronizeRecipeSteps(currentSteps, recipe.getId());
         return recipeRepository.save(recipe);
     }
 

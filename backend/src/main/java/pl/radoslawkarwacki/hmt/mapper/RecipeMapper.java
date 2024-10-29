@@ -8,7 +8,7 @@ import pl.radoslawkarwacki.hmt.dto.RecipeDetailsDto;
 import pl.radoslawkarwacki.hmt.dto.RecipeDto;
 import pl.radoslawkarwacki.hmt.model.Recipe;
 
-@Mapper(uses = {RecipeCategoryMapper.class, RecipeStepMapper.class, IngredientMapper.class})
+@Mapper(uses = {RecipeCategoryMapper.class, IngredientMapper.class})
 public interface RecipeMapper {
 
     RecipeMapper INSTANCE = Mappers.getMapper(RecipeMapper.class);
@@ -24,7 +24,7 @@ public interface RecipeMapper {
     @Mapping(target = "recipeCategoryDto", source = "recipe.recipeCategory")
     @Mapping(target = "kcal")
     @Mapping(target = "portions")
-    @Mapping(target = "steps")
+    @Mapping(target = "preparationDescription")
     @Mapping(target = "ingredients")
     RecipeDetailsDto toRecipeDetailsDto(Recipe recipe);
 

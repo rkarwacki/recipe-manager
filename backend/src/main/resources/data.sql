@@ -3,9 +3,9 @@ INSERT INTO recipe_category (id, uuid, category_name) VALUES
   (-2, '2eee06cc-7053-4d9a-ba1b-1e9cf33498db', 'Obiad'),
   (-3, '3eee06cc-7053-4d9a-ba1b-1e9cf33498dc', 'Kolacja');
 
-INSERT INTO recipe (id, uuid, recipe_name, kcal, portions, recipe_category_id) VALUES
-  (-1, '4eee06cc-7053-4d9a-ba1b-1e9cf33498da', 'Kanapki z awokado, papryką i kiełkami', 650, 1, -1),
-  (-2, '5eee06cc-7053-4d9a-ba1b-1e9cf33498da', 'Soczewica ze szpinakiem, pieczarkami i komosą', 489, 1, -2);
+INSERT INTO recipe (id, uuid, recipe_name, preparation_description, kcal, portions, recipe_category_id) VALUES
+  (-1, '4eee06cc-7053-4d9a-ba1b-1e9cf33498da', 'Kanapki z awokado, papryką i kiełkami', 'Na pieczywo połóż plasterki awokado, papryki i kiełki rzodkiewki. Posyp pestkami dyni.', 650, 1, -1),
+  (-2, '5eee06cc-7053-4d9a-ba1b-1e9cf33498da', 'Soczewica ze szpinakiem, pieczarkami i komosą', 'Soczewicę i komosę ugotuj w wodzie do miękkości. Na oleju zeszklij posiekaną cebulę z czosnkiem i przyprawami. Dodaj pieczarki, dolej odrobinę wody i duś ok. 6-8 minut. Dodaj szpinak i duś pod przykryciem ok. 2 minuty. Na patelnię dorzuć soczewicę, komosę i dobrze wymieszaj', 489, 1, -2);
 
 INSERT INTO ingredient(id, uuid, recipe_id, ingredient_name, amount_hint, amount, amount_unit) VALUES
   (-1, '31ee06cc-7053-4d9a-ba1b-1e9cf33498da', -1, 'Dynia, pestki, łuskane', '1 garść', 15, 'g'),
@@ -21,12 +21,3 @@ INSERT INTO ingredient(id, uuid, recipe_id, ingredient_name, amount_hint, amount
   (-11, '94ee06cc-7053-4d9a-ba1b-1e9cf33498da', -2, 'Tymianek, suszony', '1/3 łyżeczki', 1, 'g'),
   (-12, '95ee06cc-7053-4d9a-ba1b-1e9cf33498da', -2, 'Szpinak', '3 garście', 75, 'g'),
   (-13, '96ee06cc-7053-4d9a-ba1b-1e9cf33498da', -2, 'Komosa ryżowa (Quinoa);ziarna', '1/3 woreczka', 40, 'g');
-
-INSERT INTO recipe_step(id, uuid, recipe_id, step_number, step_description) VALUES
-  (-1, '9eee06cc-7053-4d9a-ba1b-1e9cf33498da' ,-1, 1, 'Na pieczywo połóż plasterki awokado, papryki i kiełki rzodkiewki'),
-  (-2, '9eee06cc-7053-4d9a-ba2b-1e9cf33498da' ,-1, 2, 'Posyp pestkami dyni'),
-  (-3, '9eee06cc-7053-4d9a-ba3b-1e9cf33498da' ,-2, 1, 'Soczewicę i komosę ugotuj w wodzie do miękkości'),
-  (-4, '9eee06cc-7053-4d9a-ba4b-1e9cf33498da' ,-2, 2, 'Na oleju zeszklij posiekaną cebulę z czosnkiem i przyprawami'),
-  (-5, '9eee06cc-7053-4d9a-ba5b-1e9cf33498da' ,-2, 3, 'Dodaj pieczarki, dolej odrobinę wody i duś ok. 6-8 minut'),
-  (-6, '9eee06cc-7053-4d9a-ba6b-1e9cf33498da' ,-2, 4, 'Dodaj szpinak i duś pod przykryciem ok. 2 minuty'),
-  (-7, '9eee06cc-7053-4d9a-ba7b-1e9cf33498da' ,-2, 5, 'Na patelnię dorzuć soczewicę, komosę i dobrze wymieszaj');

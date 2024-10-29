@@ -34,9 +34,9 @@ public class Recipe extends BaseEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Ingredient> ingredients;
 
-    @OneToMany(mappedBy = "recipe", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private List<RecipeStep> steps;
+    @Column(name = "preparation_description", columnDefinition = "TEXT")
+    @NotBlank
+    private String preparationDescription;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_category_id")

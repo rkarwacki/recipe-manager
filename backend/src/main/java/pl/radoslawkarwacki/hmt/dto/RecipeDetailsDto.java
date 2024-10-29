@@ -14,6 +14,6 @@ public class RecipeDetailsDto {
     private int portions;
     @JsonProperty("category")
     private RecipeCategoryDto recipeCategoryDto;
-    private List<RecipeStepDto> steps;
+    private String preparationDescription;
     private List<IngredientDto> ingredients;
 }
